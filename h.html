@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .assignment {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="/dashboard/">Dashboard</a>
+    <a href="/class/">STUDENTS</a>
+    <a href="/view-doubts/">Doubts</a>
+</div>
+
+<div class="content">
+    {% for i in obj %}
+    <h2>Welcome to the Dashboard, {{i.user.username}}</h2>
+</div>
+{% endfor %}
+
+<div class="content">
+    <h2>Submitted Assignments</h2>
+    {% for assignment in assignments %}
+   <div class="assignment">
+    <strong>Student:</strong> {{ assignment.student.username }}<br>
+    <strong>File:</strong> <a href="{{ assignment.file.url }}" download>{{ assignment.file.name }}</a><br>
+       <form method="post" action="{% url 'delete_assignment' assignment.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+</div>
+    {% empty %}
+    <p>No assignments found.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

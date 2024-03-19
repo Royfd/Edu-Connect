@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Add this form below the existing content in student_dashboard.html -->
+<form method="post" action="/raise-doubt/">
+    {% csrf_token %}
+    <textarea name="doubt" rows="4" cols="50" placeholder="Type your doubt here..." required></textarea><br><br>
+    <button type="submit">Submit Doubt</button>
+</form>
+</body>
+</html>

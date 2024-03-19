@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-form input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info">
+                {{message}}
+            </div>
+            <li>
+                {% if message.tags %}
+                    <div class="{{message.tags}}"></div>
+                {% endif %}
+            </li>
+            {% endfor %}
+            {% endif %}
+            <h1>REGISTRATION</h1>
+            <input type="text" name="uname" placeholder="USERNAME">
+            <input type="email" name="email" placeholder="EMAIL">
+            <input type="password" name="password" placeholder="PASSWORD">
+            <input type="date" name="DOB" placeholder="DATE OF BIRTH">
+            <button type="submit">REGISTER</button>
+        </form>
+    </div>
+</body>
+</html>

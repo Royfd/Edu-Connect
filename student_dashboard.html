@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .content h2 {
+            color: #333;
+        }
+        .message {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="/student-dashboard//">Dashboard</a>
+    <a href="/raise-doubt/">Raise doubts</a>
+    <a href="/profile/">Profile</a>
+    <a href="/upload-assignment/">Upload Assignment</a>
+</div>
+<div class="content">
+     <h1>Welcome, {{ student_name }}</h1>
+</div>
+<div class="content">
+    {% for message in messages %}
+    <div class="message">
+        <h3>Message:</h3>
+        <p>{{ message.text }}</p>
+        <h3>Notes</h3>
+        <strong>Notes</strong> <a href="{{ message.resume.url }}" download>{{ message.resume.name }}</a><br>
+    </div>
+    {% empty %}
+    <p>No messages found.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Doubts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Doubts</h1>
+
+{% if doubts %}
+    <ul>
+    {% for doubt in doubts %}
+        <li>
+            <strong>Student:</strong> {{ doubt.student.username }}<br>
+            <strong>Text:</strong> {{ doubt.text }}<br>
+            <!-- Add any other doubt information you want to display -->
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No doubts found.</p>
+{% endif %}
+
+</body>
+</html>
